@@ -16,8 +16,8 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
 
 ## ⏳ : To Do
 - [x] Release code
+- [x] Release evaluation data
 - [ ] Release checkpoints
-- [ ] Release evaluation data
 
 ## 🛠️ Environment
 
@@ -29,6 +29,12 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
 If you want to prepare the spatial conditions for your dataset, please refer to the following files:
 - annotate_data.py: extract condition for tasks different from `densepose`
 - extract_densepose.py: extract densepose condition
+
+We release the evaluation data at this [link](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M)
+
+## Model Checkpoints
+We will replease our checkpoints shortly.
+
 
 ## 🔥 Meta-Training
 
@@ -90,7 +96,7 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
 ```
 
 - For tasks **["canny", "hed", "depth", "normal"]**, use 5,000 images from the validation split of COCO2017 as reference images.
-- For tasks **["pose", "densepose"]**, use images containing humans from the validation split of COCO2017 as reference images.
+- For tasks **["pose", "densepose"]**, use images containing humans from the validation split of COCO2017 as reference images. Please check `pose_imgs`, `densepose_imgs` directories in the [`coco2017/val2017`](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M)
 
 ---
 
