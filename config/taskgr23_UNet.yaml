@@ -1,0 +1,39 @@
+dtype: "bfloat16"
+
+model:
+  num_tasks: 8
+  matching:
+    dims: [320, 320, 320, 320, 640, 640, 640, 1280, 1280, 1280, 1280, 1280, 1280]
+    head: 8
+    residual: false
+  lora_config:
+    matching_module:  [
+      "to_q", "to_k", "to_v", "to_o",
+      "norm1.linear",
+      "zero_mlp"
+    ]
+    r: 16
+    lora_alpha: 16
+
+data:
+  path: "datasets/laion_nonhuman"
+  human_path: "datasets/laion_human"
+  train_tasks: ["depth", "normal", "pose", "densepose"]
+  test_tasks: ["canny", "hed"] # "sketch", "mlsd" 
+  tasks_per_batch: 2
+  splits: [1., 0.]
+  shots: 3
+  total_samples: 300000
+  batch_size: 1
+  num_workers: 1
+
+train:
+  accumulate_grad_batches: 2
+  gradient_checkpointing: False
+  optimizer:
+    type: "AdamW"
+    params:
+      lr: 0.0001
+      use_bias_correction: true
+      safeguard_warmup: true
+      weight_decay: 0.01

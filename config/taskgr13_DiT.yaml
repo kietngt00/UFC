@@ -1,0 +1,34 @@
+dtype: "bfloat16"
+
+model:
+  control_interval: 2
+  num_tasks: 8
+  matching:
+      dim_q: 1536
+      dim_k: 1536
+      dim_v: 1536
+      head: 12
+      hidden_dim: 1536
+      time_dim: 1536
+
+data:
+  path: "datasets/laion_nonhuman"
+  human_path: "datasets/laion_human"
+  train_tasks: ["canny", "hed", "pose", "densepose"]
+  test_tasks: ["depth", "normal",]  # "sketch", "mlsd" 
+  tasks_per_batch: 2
+  splits: [1.0, 0.0]
+  shots: 3
+  total_samples: 300000
+  batch_size: 1
+  num_workers: 1
+
+train:
+  accumulate_grad_batches: 2
+  gradient_checkpointing: true
+
+  optimizer:
+    type: "AdamW"
+    params:
+      lr: 0.0001
+      weight_decay: 0.01
