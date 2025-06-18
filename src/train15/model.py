@@ -467,15 +467,12 @@ class SD15Model(L.LightningModule):
                 break
 
         if task in ['pose', 'densepose']:
-            path = f'datasets/coco2017/val2017/{self.task}/000000000785.jpg'
-            prompt_path = 'datasets/coco2017/val2017/prompts/000000000785.txt'
+            path = glob(f'datasets/laion_human/00183/{task}/*.jpg')[0]
         else:
-            paths = glob(f'assets/laion/nonhuman/{task}/*.jpg')
-            paths.sort()
-            path = paths[9]
-        
-            prompt_path = path.replace('.jpg', '.txt')
-            prompt_path = prompt_path.replace(f'{task}/', '')
+            path = glob(f'datasets/laion_nonhuman/00183/{task}/*.jpg')[0]
+
+        prompt_path = path.replace('.jpg', '.txt')
+        prompt_path = prompt_path.replace(f'{task}/', '')
 
         q_cond = Image.open(path).convert("RGB")
         q_prompt = []

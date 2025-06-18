@@ -392,11 +392,11 @@ class SD3Model(L.LightningModule):
     @torch.no_grad()
     def validation(self, sp_cond_f, sp_image_f):
         if self.task in ['pose', 'densepose']:
-            path = f'../coco2017/val2017/{self.task}/000000000785.jpg'
-            image = Image.open(f'../coco2017/val2017/images/000000000785.jpg').convert('RGB')
-            prompt_path = '../coco2017/val2017/prompts/000000000785.txt'
+            path = f'datasets/coco2017/val2017/{self.task}/000000000785.jpg'
+            image = Image.open(f'datasets/coco2017/val2017/images/000000000785.jpg').convert('RGB')
+            prompt_path = 'datasets/coco2017/val2017/prompts/000000000785.txt'
         else:
-            paths = glob(f'assets/laion/nonhuman/{self.task}/*.jpg')
+            paths = glob(f'datasets/laion_nonhuman/00132/{self.task}/*.jpg')
             paths.sort()
             path = paths[4]
             image = Image.open(path.replace(f"{self.task}/", "")).convert('RGB')
@@ -438,22 +438,22 @@ class SD3Model(L.LightningModule):
 
     @torch.no_grad()
     def train_inference(self):
-        human_paths = glob('./assets/laion/human/*.jpg')
-        nonhuman_paths = glob('./assets/laion/nonhuman/*.jpg')
+        human_paths = glob('datasets/laion_human/00183/*.jpg')
+        nonhuman_paths = glob('datasets/laion_nonhuman/00183/*.jpg')
         human_paths.sort()
         nonhuman_paths.sort()
 
         name = human_paths[0].split('/')[-1]
-        q_path1 = f"./assets/laion/human/pose/{name}"
-        q_path2 = f"./assets/laion/human/densepose/{name}"
+        q_path1 = f"datasets/laion_human/00183/pose/{name}"
+        q_path2 = f"datasets/laion_human/00183/densepose/{name}"
         with open(human_paths[0].replace('.jpg', '.txt'), 'r') as f:
             prompt1 = f.read().strip()
 
         name = nonhuman_paths[0].split('/')[-1]
-        q_path3 = f"./assets/laion/nonhuman/normal/{name}"
-        q_path4 = f"./assets/laion/nonhuman/depth/{name}"
-        q_path5 = f"./assets/laion/nonhuman/hed/{name}"
-        q_path6 = f"./assets/laion/nonhuman/canny/{name}"
+        q_path3 = f"datasets/laion_nonhuman/00183/normal/{name}"
+        q_path4 = f"datasets/laion_nonhuman/00183/depth/{name}"
+        q_path5 = f"datasets/laion_nonhuman/00183/hed/{name}"
+        q_path6 = f"datasets/laion_nonhuman/00183/canny/{name}"
         with open(nonhuman_paths[0].replace('.jpg', '.txt'), 'r') as f:
             prompt2 = f.read().strip()
 
@@ -474,7 +474,7 @@ class SD3Model(L.LightningModule):
             sp_task_img = []
             for i in range(1,5):
                 name = human_paths[i].split('/')[-1]
-                sp_task_cond.append(Image.open(f"./assets/laion/human/{task}/{name}").convert("RGB"))
+                sp_task_cond.append(Image.open(f"datasets/laion_human/00183/{task}/{name}").convert("RGB"))
                 sp_task_img.append(Image.open(human_paths[i]).convert("RGB"))
                 task_indices.append(TASKS[task])
             sp_cond.append(sp_task_cond)
@@ -484,7 +484,7 @@ class SD3Model(L.LightningModule):
             sp_task_img = []
             for i in range(1,5):
                 name = nonhuman_paths[i].split('/')[-1]
-                sp_task_cond.append(Image.open(f"./assets/laion/nonhuman/{task}/{name}").convert("RGB"))
+                sp_task_cond.append(Image.open(f"datasets/laion_nonhuman/00183/{task}/{name}").convert("RGB"))
                 sp_task_img.append(Image.open(nonhuman_paths[i]).convert("RGB"))
                 task_indices.append(TASKS[task])
             sp_cond.append(sp_task_cond)
@@ -525,9 +525,9 @@ class SD3Model(L.LightningModule):
                 break
 
         if task in ['pose', 'densepose']:
-            path = glob(f'./assets/laion/human/{task}/*.jpg')[0]
+            path = glob(f'datasets/laion_human/00183/{task}/*.jpg')[0]
         else:
-            path = glob(f'./assets/laion/nonhuman/{task}/*.jpg')[0]
+            path = glob(f'datasets/laion_nonhuman/00183/{task}/*.jpg')[0]
         
         prompt_path = path.replace('.jpg', '.txt')
         prompt_path = prompt_path.replace(f'{task}/', '')
