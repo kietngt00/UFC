@@ -131,4 +131,6 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
         --gt_path /datasets/coco2017/val2017/densepose/dumpt.pt
     ```
 
+## 🙏 Acknowledgements
+We develop our method based on the [diffusers](https://github.com/huggingface/diffusers) library, the official code of [OminiControl](https://github.com/Yuanshi9815/OminiControl/tree/main), [VTM](https://github.com/GitGyun/visual_token_matching) and [ControlNet](https://github.com/lllyasviel/ControlNet). We gratefully acknowledge the authors for making their code publicly available.
 
