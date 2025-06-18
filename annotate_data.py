@@ -12,6 +12,7 @@ from annotator.midas import MidasDetector
 from annotator.canny import CannyDetector
 from annotator.mlsd import MLSDdetector
 from annotator.sketch import SketchDetector
+from annotator.openpose import OpenposeDetector, util
 
 
 parser = argparse.ArgumentParser()
@@ -34,10 +35,12 @@ midas_annotator = MidasDetector()
 canny_annotator = CannyDetector()
 mlsd_annotator = MLSDdetector()
 sketch_annotator = SketchDetector()
+openpose_annotator = OpenposeDetector()
+
 
 for i in tqdm(range(i_start, i_end)):
     paths = glob(dirs[i] + "/*.jpg")
-    for task in ['hed', 'canny', 'mlsd', 'sketch', 'depth', 'normal']:
+    for task in ['hed', 'canny', 'mlsd', 'sketch', 'depth', 'normal', 'pose']:
         os.makedirs(dirs[i] + f"/{task}", exist_ok=True)
 
     for file in paths:
@@ -61,3 +64,6 @@ for i in tqdm(range(i_start, i_end)):
 
         image_sketch = sketch_annotator(image)
         Image.fromarray(image_sketch).save(dirs[i] + f"/sketch/{name}")
+        
+        image_pose, _ = openpose_annotator(image)
+        Image.fromarray(image_pose).save(dirs[i] + f"/pose/{name}")
