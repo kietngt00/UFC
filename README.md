@@ -128,7 +128,7 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
     ```
     python eval/densepose_mIoU.py \
         --predict_path </path/to/extracted_segmentation> \
-        --gt_path /datasets/coco2017/val2017/densepose/dumpt.pt
+        --gt_path datasets/coco2017/val2017/densepose/dumpt.pt
     ```
 
 ## 🙏 Acknowledgements
