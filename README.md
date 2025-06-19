@@ -1,7 +1,7 @@
 # Universal Few-Shot Spatial Control for Diffusion Models
 ![Results Visualization](assets/results.png)
 
-*Figure 1: Results of our method learned with **30 examples** on **unseen** spatial conditions. The proposed control adapter guides the pre-trained T2I models in a versatile and data-efficient manner.*
+*Figure 1: Results of our method (**UNet**) learned with **30 examples** on **unseen** spatial conditions. The proposed control adapter guides the pre-trained T2I models in a versatile and data-efficient manner.*
 
 ## 🚀 Introduction
 This repository contains the official implementation of **UFC: Universal Few-Shot Spatial Control for Diffusion Models**.
