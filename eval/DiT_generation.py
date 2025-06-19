@@ -5,9 +5,8 @@ import os
 import argparse
 from tqdm import tqdm
 from einops import rearrange
-from matplotlib import pyplot as plt
-from io import BytesIO
 from PIL import Image
+from glob import glob
 
 from src.sd3.pipeline_tools import pipeline_forward
 from src.train3.model import SD3Model
@@ -45,7 +44,7 @@ def main(args):
     # Data
     test_tasks = data_config["test_tasks"] if not args.task else [args.task]
     datamodule = TestDatamodule(
-        path="/data2/kietngt00/coco2017/val2017",
+        path="datasets/coco2017/val2017",
         tasks=test_tasks,
         res=512,
         batch_size=args.batch_size,
@@ -73,10 +72,10 @@ def main(args):
 
     # Save path
     if args.task_ckpt_path is None:
-        exp_name = ckpt_path.split("/")[-4]
+        exp_name = ckpt_path.split("/")[-2]
         tuning_ckpt = ckpt_path.split("/")[-1].split(".")[0]
     else:
-        exp_name = args.task_ckpt_path.split("/")[-4]
+        exp_name = args.task_ckpt_path.split("/")[-2]
         tuning_ckpt = args.task_ckpt_path.split("/")[-1].split(".")[0]
 
     output_dir = f"./DiT_generation_{args.shots}shots/{exp_name}/{tuning_ckpt}"
@@ -103,7 +102,7 @@ def main(args):
 
         sp_image = supports['images'] # S images
         sp_cond = supports['conditions'] # T [S images]
-        S = args.shots
+        S = min(args.shots, len(sp_image))
         indices = range(S)
         sp_image = [[sp_image[i] for i in indices]] * (B * T)
         sp_cond = [[cond[i] for i in indices] for cond in sp_cond] * B

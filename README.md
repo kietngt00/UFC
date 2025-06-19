@@ -35,9 +35,6 @@ If you want to prepare the spatial conditions for your dataset, please refer to 
 #### 2. Evaluation data
 We release the evaluation data at this [link](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M). After downloading the zip file, it should be extracted and placed in the `datasets` directory.
 
-#### 3. Support data for generation
-We use 5 condition-image pairs as 5 shots for the image generation process.
-We will push the support data and update the generation code shortly.
 
 ## 📍 Model Checkpoints
 

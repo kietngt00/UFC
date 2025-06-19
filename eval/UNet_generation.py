@@ -76,10 +76,10 @@ def main(args):
 
     # Save path
     if args.task_ckpt_path is None:
-        exp_name = ckpt_path.split("/")[-4]
+        exp_name = ckpt_path.split("/")[-2]
         tuning_ckpt = ckpt_path.split("/")[-1].split(".")[0]
     else:
-        exp_name = args.task_ckpt_path.split("/")[-4]
+        exp_name = args.task_ckpt_path.split("/")[-2]
         tuning_ckpt = args.task_ckpt_path.split("/")[-1].split(".")[0]
 
     output_dir = f"./unet_generation_{args.shots}shots/{exp_name}/{tuning_ckpt}"
