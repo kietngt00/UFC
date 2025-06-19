@@ -26,7 +26,7 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
    
 2. Install other dependencies via ```pip install -r requirements.txt```
 
-## Datasets 
+## 📂 Datasets 
 #### 1. Data preprocessing (Optional)
 If you want to prepare the spatial conditions for your dataset, please refer to the following files:
 - annotate_data.py: extract condition for tasks different from `densepose`
