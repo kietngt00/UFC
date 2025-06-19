@@ -5,7 +5,7 @@ from torch import nn
 from PIL import Image
 from einops import rearrange
 import numpy as np
-from src.modules.matching import CrossAttention
+from src.modules.matching import CrossAttention1
 from typing import Dict, Any
 from diffusers.models.transformers.transformer_sd3 import (
     is_torch_version,
@@ -20,7 +20,7 @@ from PIL import Image
 import os
 
 from src.dataset import TASKS
-from src.modules.multitask_linear import MultiTaskLinear
+from src.modules.multitask_modules import MultiTaskLinear
 from src.sd3.transformer import label_encoder_forward, image_encoder_forward
 from src.sd3.pipeline_tools import encode_images, pipeline_forward
 
@@ -92,7 +92,7 @@ class SD3Model(L.LightningModule):
         for i in range(len(self.transformer.transformer_blocks) // self.control_interval):
             if i == len(self.transformer.transformer_blocks) - 1:
                 break
-            matching_modules.append(CrossAttention(**model_config['matching']))
+            matching_modules.append(CrossAttention1(**model_config['matching']))
         self.matching_modules = nn.ModuleList(matching_modules)
         
         # Initialize task-bias params

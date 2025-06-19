@@ -20,7 +20,7 @@ import os
 import copy
 import gc
 
-from src.modules.matching import CrossAttention
+from src.modules.matching import CrossAttention1
 from src.modules.multitask_modules import MultiTaskLinear, MultiTaskConv2d
 from src.sd15.unet_encoder import unet_encode, unet_bias_encode
 from src.sd15.pipeline_tools import pipeline_forward
@@ -87,7 +87,7 @@ class SD15Model(L.LightningModule):
         for i in range(len(model_config['matching']['dims'])):
             dim = model_config['matching']['dims'][i]
             matching_modules.append(
-                CrossAttention(
+                CrossAttention1(
                     dim_q=dim,
                     dim_k=dim,
                     dim_v=dim,

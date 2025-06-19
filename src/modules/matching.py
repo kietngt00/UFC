@@ -65,7 +65,7 @@ class AdaLayerNormZero(nn.Module):
         return x, gate_msa
         
 
-class CrossAttention(nn.Module):
+class CrossAttention1(nn.Module):
     def __init__(self, dim_q, dim_k, dim_v, head=8, hidden_dim=768, time_dim=1280):
         super().__init__()
 

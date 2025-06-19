@@ -51,7 +51,7 @@ accelerate launch -m src.train15.train \
     --config </path/to/config> \
     --exp_name <exp_name>
 ``` 
-We train our UFC (**UNet**) on 8 NVIDIA RTX3090 GPUs.
+- We train UFC (**UNet**) on 8 NVIDIA RTX3090 GPUs.
 
 Training UFC with **DiT** ([Stable Diffusion v3.5-medium](https://huggingface.co/stabilityai/stable-diffusion-3.5-medium)) backbone:
 ```
@@ -59,7 +59,7 @@ accelerate launch -m src.train3.train \
     --config </path/to/config> \
     --exp_name <exp_name>
 ``` 
-We train our UFC (**DiT**) on 8 NVIDIA A6000 GPUs
+- We train UFC (**DiT**) on 8 NVIDIA A6000 GPUs
 
 ## 🔥 Few-shot Fine-tuning
 After finish meta-training process, the model can be fine-tuned on unseen tasks with a handful of support examples.
