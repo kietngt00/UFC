@@ -17,7 +17,7 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
 ## ⏳ : To Do
 - [x] Release code
 - [x] Release evaluation data
-- [ ] Release checkpoints
+- [x] Release checkpoints
 - [ ] Provide support data for generation
 
 ## 🛠️ Environment
@@ -56,12 +56,12 @@ We will push the support data and update the generation code shortly.
 
 | Few-shot Task | Few-shot (30-shot) Fine-tuned Model | Base Meta-trained Model | Description |
 |:-------------:|:-----------------------------------:|:-----------------------:|:-----------:|
-| `Canny`   | [DiT_canny](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr23_canny_30) | [DiT_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
-| `Hed`     | [DiT_hed](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr23_hed_30) | [DiT_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
-| `Depth`   | [DiT_depth](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr13_depth_30) | [DiT_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
-| `Normal`  | [DiT_normal](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr13_normal_30) | [DiT_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
-| `Pose`    | [DiT_pose](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr12_pose_30) | [DiT_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
-|`Densepose`| [DiT_densepose](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr12_densepose_30) | [DiT_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
+| `Canny`   | [DiT_canny](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr23_canny) | [DiT_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
+| `Hed`     | [DiT_hed](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr23_hed) | [DiT_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
+| `Depth`   | [DiT_depth](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr13_depth) | [DiT_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
+| `Normal`  | [DiT_normal](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr13_normal) | [DiT_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
+| `Pose`    | [DiT_pose](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr12_pose) | [DiT_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
+|`Densepose`| [DiT_densepose](https://huggingface.co/ntk1507/UFC/tree/main/DiT_tuning_logs/DiT_taskgr12_densepose) | [DiT_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/DiT_logs/DiT_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
 
 
 
