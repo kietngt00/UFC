@@ -18,19 +18,26 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
 - [x] Release code
 - [x] Release evaluation data
 - [ ] Release checkpoints
+- [ ] Provide support data for generation
 
 ## 🛠️ Environment
 
-1. This codebase is developed on PyTorch 2.6.0, CUDA 11.8, and Python 3.11
+1. This codebase is developed on PyTorch 2.6.0, CUDA 11.8, and Python 3.11.11
    
 2. Install other dependencies via ```pip install -r requirements.txt```
 
-## Data Preprocessing (Optional)
+## Datasets 
+#### 1. Data preprocessing (Optional)
 If you want to prepare the spatial conditions for your dataset, please refer to the following files:
 - annotate_data.py: extract condition for tasks different from `densepose`
 - extract_densepose.py: extract densepose condition
 
-We release the evaluation data at this [link](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M)
+#### 2. Evaluation data
+We release the evaluation data at this [link](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M). After downloading the zip file, it should be extracted and placed in the `datasets` directory.
+
+#### 3. Support data for generation
+We use 5 condition-image pairs as 5 shots for the image generation process.
+We will push the support data and update the generation code shortly.
 
 ## Model Checkpoints
 We will replease our checkpoints shortly.
@@ -44,6 +51,7 @@ accelerate launch -m src.train15.train \
     --config </path/to/config> \
     --exp_name <exp_name>
 ``` 
+We train our UFC (**UNet**) on 8 NVIDIA RTX3090 GPUs.
 
 Training UFC with **DiT** ([Stable Diffusion v3.5-medium](https://huggingface.co/stabilityai/stable-diffusion-3.5-medium)) backbone:
 ```
@@ -51,6 +59,7 @@ accelerate launch -m src.train3.train \
     --config </path/to/config> \
     --exp_name <exp_name>
 ``` 
+We train our UFC (**DiT**) on 8 NVIDIA A6000 GPUs
 
 ## 🔥 Few-shot Fine-tuning
 After finish meta-training process, the model can be fine-tuned on unseen tasks with a handful of support examples.
@@ -64,9 +73,9 @@ python -m src.train15.fewshot_finetune \
     --shots <number of fine-tune data> \
     --exp_name <exp_name>
 ```
-`<task>` is selected in ["canny", "hed", "depth", "normal", "pose", "densepose"]. It should be an unseen task during meta-training
+`<task>` is selected in ["canny", "hed", "depth", "normal", "pose", "densepose"]. It should be an unseen task during meta-training.
 
-Script for UFC with **DiT** backbone is similar, but replacing `train15` with `train3`
+Script for UFC with **DiT** backbone is similar, but replacing `train15` with `train3`.
 
 ## 🖼️ Image Generation
 
@@ -79,7 +88,7 @@ PYTHONPATH=. python eval/UNet_generation.py \
     --task <task> --shots 5 --batch_size 8 \
 ```
 
-Script for UFC with **DiT** backbone is similar, but replacing `UNet_generation.py` with `DiT_generation.py`
+Script for UFC with **DiT** backbone is similar, but replacing `UNet_generation.py` with `DiT_generation.py`.
 
 ## 📝 Evaluation
 
@@ -96,7 +105,7 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
 ```
 
 - For tasks **["canny", "hed", "depth", "normal"]**, use 5,000 images from the validation split of COCO2017 as reference images.
-- For tasks **["pose", "densepose"]**, use images containing humans from the validation split of COCO2017 as reference images. Please check `pose_imgs`, `densepose_imgs` directories in the [`coco2017/val2017`](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M)
+- For tasks **["pose", "densepose"]**, use images containing humans from the validation split of COCO2017 as reference images. Please check `pose_imgs`, `densepose_imgs` directories in the [`coco2017/val2017`](https://drive.google.com/drive/folders/1iWwntrxJnGIUlTmnpR9eHqNhaYZETA3M).
 
 ---
 
