@@ -139,7 +139,7 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
 
 - **For the "densepose" task:**
 
-    First, install the DensePose dependencies:
+    First, install the [DensePose](https://github.com/facebookresearch/detectron2/tree/main/projects/DensePose) dependencies:
     ```
     git clone https://github.com/facebookresearch/detectron2.git
     python -m pip install -e detectron2
