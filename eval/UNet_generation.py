@@ -5,127 +5,15 @@ import os
 import argparse
 from tqdm import tqdm
 from einops import rearrange
-from matplotlib import pyplot as plt
-from io import BytesIO
 from PIL import Image
 import numpy as np
+from glob import glob
 
 from src.sd15.pipeline_tools import pipeline_forward
 from src.train15.model import SD15Model
 from src.dataset.coco2017val import TestDatamodule
-from src.dataset.laion_meta_dataset import TASKS, ControlDataModule
+from src.dataset.laion_meta_dataset import TASKS
 from src.sd15.unet_encoder import unet_encode, unet_bias_encode
-
-
-def visualize_generation2(gt, cond, image, prompt):
-    n_col = 3
-    n_row = 1
-    plt.figure(figsize=(4*n_col, 4.2*n_row))
-    plt.suptitle(f"{prompt}", wrap=True)
-
-    plt.subplot(n_row, n_col, 1)
-    plt.imshow(cond)
-    plt.axis('off')
-    plt.title("Query")
-
-
-    plt.subplot(n_row, n_col, 2)
-    plt.imshow(image)
-    plt.axis('off')
-    plt.title("Generation")
-
-    
-    plt.subplot(n_row, n_col, 3)
-    plt.imshow(gt)
-    plt.axis('off')
-    plt.title("Ground Truth")
-
-    # plt.tight_layout()
-
-    buf = BytesIO()
-    plt.savefig(buf, format='png')
-    plt.close()
-    buf.seek(0)
-
-    pil_image = Image.open(buf).convert('RGB')
-    buf.close()
-    return pil_image
-
-def visualize_generation(gt, cond, image, sp_cond, sp_image, prompt):
-    n_col = 1 + len(sp_image)
-    n_row = 3
-    plt.figure(figsize=(2*n_col, 2*n_row))
-    plt.suptitle(f"{prompt}")
-    plt.subplot(n_row, n_col, 1)
-    plt.imshow(cond)
-    plt.axis('off')
-    plt.title("Query")
-
-    for i, c in enumerate(sp_cond):
-        plt.subplot(n_row, n_col, i+2)
-        plt.imshow(c)
-        plt.axis('off')
-        title = f"Support {i}"
-        plt.title(title)
-
-    plt.subplot(n_row, n_col, n_col + 1)
-    plt.imshow(image)
-    plt.axis('off')
-
-    for i, img in enumerate(sp_image):
-        plt.subplot(n_row, n_col, i+2+n_col)
-        plt.imshow(img)
-        plt.axis('off')
-    
-    plt.subplot(n_row, n_col, n_col * 2 + 1)
-    plt.imshow(gt)
-    plt.axis('off')
-    plt.title("GT")
-
-    plt.tight_layout()
-
-    buf = BytesIO()
-    plt.savefig(buf, format='png')
-    plt.close()
-    buf.seek(0)
-
-    pil_image = Image.open(buf).convert('RGB')
-    buf.close()
-    return pil_image
-
-
-def tensor_to_image(batch):
-    batch['task_indices'] = batch['task_indices'].squeeze(0)
-
-    batch['images'] = batch['images'].squeeze(0)
-    batch['images'] = torch.chunk(batch['images'], 2, dim=0)[0]
-    images = []
-    for i in range(batch['images'].shape[0]):
-        img = batch['images'][i]
-        img = rearrange(img, 'C H W -> H W C')
-        img = (img * 255).byte().numpy()
-        img = Image.fromarray(img)
-        images.append(img)
-    batch['images'] = images
-
-    batch['conditions'] = batch['conditions'].squeeze(0)
-    batch['conditions'] = torch.chunk(batch['conditions'], 2, dim=0)[0]
-    conditions = []
-    for t in range(batch['conditions'].shape[0]):
-        task_conds = []
-        for i in range(batch['conditions'].shape[1]):
-            cond = batch['conditions'][t][i]
-            cond = rearrange(cond, 'C H W -> H W C')
-            cond = (cond * 255).byte().numpy()
-            cond = Image.fromarray(cond)
-            task_conds.append(cond)
-        conditions.append(task_conds)
-    batch['conditions'] = conditions
-
-    prompts = batch['prompts']
-    batch['prompts'] = [prompts[i][0] for i in range(len(batch['images']))] # an element in prompts is a tuple of len 1
-
-    return batch
 
 
 def main(args):
@@ -160,7 +48,7 @@ def main(args):
     # Data
     test_tasks = data_config["test_tasks"] if not args.task else [args.task]
     datamodule = TestDatamodule(
-        path="/data1/kietngt00/coco2017/val2017",
+        path="datasets/coco2017/val2017",
         tasks=test_tasks,
         res=512,
         batch_size=args.batch_size,
@@ -168,18 +56,23 @@ def main(args):
     )
     test_loader = datamodule.test_dataloader()
 
-    datamodule = ControlDataModule(path=data_config["path"],
-                                human_path=data_config["human_path"],
-                                train_tasks=data_config["train_tasks"],
-                                test_tasks=data_config["test_tasks"],
-                                tasks_per_batch=data_config["tasks_per_batch"],
-                                splits=data_config["splits"],
-                                shots=data_config["shots"],
-                                batch_size=data_config["batch_size"],
-                                num_workers=data_config["num_workers"],)
-    tuning_dl = datamodule.tuning_dataloader(test_tasks, args.shots, generating=True)
-    supports = next(iter(tuning_dl))
-    supports = tensor_to_image(supports)
+    supports = {
+        'images': [],
+        'conditions': [],
+        'task_indices': []
+    }
+    if args.task in ["pose", "densepose"]:
+        support_paths = glob("datasets/supports/human_images/*.jpg")
+    else:
+        support_paths = glob(f"datasets/supports/images/*.jpg")
+    support_paths.sort()
+    for path in support_paths:
+        filename = path.split("/")[-1]
+        image = Image.open(path).convert("RGB")
+        supports['images'].append(image)
+        condition = Image.open(f"datasets/supports/{args.task}/{filename}").convert("RGB")
+        supports['conditions'].append(condition)
+        supports['task_indices'].append(TASKS[args.task])
 
     # Save path
     if args.task_ckpt_path is None:
@@ -201,7 +94,7 @@ def main(args):
     # Pre compute support
     sp_image = supports['images'] # S images
     sp_cond = supports['conditions'] # T [S images]
-    S = min(len(sp_image), 15)
+    S = min(len(sp_image), args.shots)
     sp_image = sp_image[:S]
     sp_cond = [cond[:S] for cond in sp_cond]
     task_indices = supports['task_indices']
