@@ -18,7 +18,7 @@ This repository contains the official implementation of **UFC: Universal Few-Sho
 - [x] Release code
 - [x] Release evaluation data
 - [x] Release checkpoints
-- [ ] Provide support data for generation
+- [x] Provide support data for generation
 
 ## 🛠️ Environment
 
