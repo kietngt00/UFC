@@ -99,7 +99,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.task == 'pose':
-        json_path = "/data2/kietngt00/coco2017/annotations/keypoints_captions_val.json"
+        json_path = "datasets/coco2017/annotations/keypoints_captions_val.json"
         with open(json_path, 'r') as f:
             coco_data = json.load(f)
         

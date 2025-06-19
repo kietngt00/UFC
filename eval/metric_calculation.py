@@ -77,7 +77,7 @@ def main(args):
     
     elif args.task == 'pose':
         
-        coco_gt = COCO("/data2/kietngt00/coco2017/annotations/conv.json")
+        coco_gt = COCO("datasets/coco2017/annotations/conv.json")
 
         predict_path = args.gen_path + f"/annotations/annotations.json"
         

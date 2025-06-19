@@ -19,7 +19,7 @@ for ((i=0; i<num_processes; i++)); do
 
     # Run in background
     # CUDA_VISIBLE_DEVICES=$DEVICE python -m src.dataset.annotate_data --path ./data/clip-filtered-dataset --i_start $i_start --i_end $i_end &
-    CUDA_VISIBLE_DEVICES=$DEVICE python annotate_data.py --path /data2/kietngt00/laion400m-data --i_start $i_start --i_end $i_end &
+    CUDA_VISIBLE_DEVICES=$DEVICE python annotate_data.py --path datasets/laion400m-data --i_start $i_start --i_end $i_end &
 done
 
 # Wait for all background processes to finish
