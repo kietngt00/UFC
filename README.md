@@ -45,10 +45,10 @@ We will push the support data and update the generation code shortly.
 |:-------------:|:-----------------------------------:|:-----------------------:|:-----------:|
 | `Canny`   | [UNet_canny_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr23_canny_30) | [UNet_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
 | `Hed`     | [UNet_hed_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr23_hed_30) | [UNet_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
-| `Depth`   | [UNet_Depth_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr13_depth_30) | [UNet_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
+| `Depth`   | [UNet_depth_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr13_depth_30) | [UNet_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
 | `Normal`  | [UNet_canny_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr13_normal_30) | [UNet_taskgr13](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr13) | The base model is trained with 4 tasks: `[Canny, HED, Pose, Densepose]`|
 | `Pose`    | [UNet_pose_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr12_pose_30) | [UNet_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
-|`Densepose`| [UNet_pose_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr12_densepose_30) | [UNet_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
+|`Densepose`| [UNet_densepose_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr12_densepose_30) | [UNet_taskgr12](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr12) | The base model is trained with 4 tasks: `[Canny, HED, Depth, Normal]`|
 
 
 
