@@ -43,7 +43,7 @@ We will push the support data and update the generation code shortly.
 
 | Few-shot Task | Few-shot (30-shot) Fine-tuned Model | Base Meta-trained Model | Description |
 |:-------------:|:-----------------------------------:|:----------------------:|:------------|
-| `Canny` | [UNet_canny_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr23_canny_30) | [UNet_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr23) | The base meta-trained model is trained with 4 tasks: `["depth", "normal", "pose", "densepose"]`, then is few-shot fine-tuned on task `Canny`. |
+| `Canny` | [UNet_canny_30](https://huggingface.co/ntk1507/UFC/tree/main/unet_tuning_logs/UNet_taskgr23_canny_30) | [UNet_taskgr23](https://huggingface.co/ntk1507/UFC/tree/main/unet_logs/UNet_taskgr23) | The base model is trained with 4 tasks: `[Depth, Normal, Pose, Densepose]`|
 
 
 
