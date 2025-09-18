@@ -9,7 +9,7 @@
 [Chanhyuk Lee](https://david3684.github.io/), 
 [Donggyun Kim](https://sites.google.com/view/donggyun-kim), 
 [Dong Hoon Lee](https://movinghoon.github.io//), 
-[Seunghoon Hong](https://maga33.github.io/),
+[Seunghoon Hong](https://maga33.github.io/)
 
 KAIST
 
