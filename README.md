@@ -187,7 +187,7 @@ II212068, RS-2022-II220959, and RS-2019-II190075) funded by the Korea government
 
 ## 📖 Citation
 If you find this work useful, please consider citing
-
+```bibtex
 @misc{nguyen2025universalfewshotspatialcontrol,
       title={Universal Few-Shot Spatial Control for Diffusion Models}, 
       author={Kiet T. Nguyen and Chanhuyk Lee and Donggyun Kim and Dong Hoon Lee and Seunghoon Hong},
@@ -197,3 +197,4 @@ If you find this work useful, please consider citing
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2509.07530}, 
 }
+```
