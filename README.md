@@ -3,6 +3,14 @@
 
 *Figure 1: Results of our method (**UNet**) learned with **30 examples** on **unseen** spatial conditions. The proposed control adapter guides the pre-trained T2I models in a versatile and data-efficient manner.*
 
+[![arXiv](https://img.shields.io/badge/arXiv-2504.17207-B31B1B?logo=arXiv&logoColor=white)](https://arxiv.org/abs/2509.07530)
+[Kiet T. Nguyen](https://sites.google.com/view/kietngt/)<sup>1</sup>, 
+[Chanhyuk Lee](https://david3684.github.io/)<sup>2</sup>, 
+[Donggyun Kim](https://sites.google.com/view/donggyun-kim)<sup>1</sup>, 
+[Dong Hoon Lee](https://movinghoon.github.io//)<sup>3</sup>, 
+[Seunghoon Hong](https://maga33.github.io/)<sup>2</sup>,
+
+
 ## 🚀 Introduction
 This repository contains the official implementation of **Universal Few-Shot Spatial Control for Diffusion Models (UFC)**.
 
@@ -165,12 +173,24 @@ python -m pytorch_fid </path/to/generated_images> </path/to/reference_images>
         --gt_path datasets/coco2017/val2017/densepose/dumpt.pt
     ```
 
-## 🙏 Acknowledgements
+## 📖 Reference
 We develop our method based on the [diffusers](https://github.com/huggingface/diffusers) library, the official code of [OminiControl](https://github.com/Yuanshi9815/OminiControl/tree/main), [VTM](https://github.com/GitGyun/visual_token_matching) and [ControlNet](https://github.com/lllyasviel/ControlNet). We gratefully acknowledge the authors for making their code publicly available.
 
-## 📖 Citation
 
-<!-- ```bibtex
-@article{
+## 🙏 Acknowledgements
+This work was in part supported by the National Research Foundation of
+Korea (RS-2024-00351212 and RS-2024-00436165) and the Institute of Information & communications Technology Planning & Evaluation (IITP) (RS-2022-II220926, RS-2024-00509279, RS-2021-
+II212068, RS-2022-II220959, and RS-2019-II190075) funded by the Korea government (MSIT).
+
+## 📖 Citation
+If you find this work useful, please consider citing
+
+@misc{nguyen2025universalfewshotspatialcontrol,
+      title={Universal Few-Shot Spatial Control for Diffusion Models}, 
+      author={Kiet T. Nguyen and Chanhuyk Lee and Donggyun Kim and Dong Hoon Lee and Seunghoon Hong},
+      year={2025},
+      eprint={2509.07530},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.07530}, 
 }
-``` -->
