@@ -4,11 +4,14 @@
 *Figure 1: Results of our method (**UNet**) learned with **30 examples** on **unseen** spatial conditions. The proposed control adapter guides the pre-trained T2I models in a versatile and data-efficient manner.*
 
 [![arXiv](https://img.shields.io/badge/arXiv-2504.17207-B31B1B?logo=arXiv&logoColor=white)](https://arxiv.org/abs/2509.07530)
-[Kiet T. Nguyen](https://sites.google.com/view/kietngt/)<sup>1</sup>, 
-[Chanhyuk Lee](https://david3684.github.io/)<sup>2</sup>, 
-[Donggyun Kim](https://sites.google.com/view/donggyun-kim)<sup>1</sup>, 
-[Dong Hoon Lee](https://movinghoon.github.io//)<sup>3</sup>, 
-[Seunghoon Hong](https://maga33.github.io/)<sup>2</sup>,
+
+[Kiet T. Nguyen](https://sites.google.com/view/kietngt/), 
+[Chanhyuk Lee](https://david3684.github.io/), 
+[Donggyun Kim](https://sites.google.com/view/donggyun-kim), 
+[Dong Hoon Lee](https://movinghoon.github.io//), 
+[Seunghoon Hong](https://maga33.github.io/),
+
+KAIST
 
 
 ## 🚀 Introduction
